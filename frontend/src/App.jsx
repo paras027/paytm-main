@@ -27,27 +27,27 @@ function App() {
           {/* Redirect to dashboard if user is logged in */}
           <Route
             path="/"
-            element={isLoggedIn() ? <Dashboard/> : <Home />}
+            element={isLoggedIn() ? <Navigate to="/dashboard" /> : <Home/>}
           />
           {/* Redirect to dashboard if user is logged in */}
           <Route
             path="/signup"
-            element={isLoggedIn() ? <Dashboard/> : <Signup />}
+            element={isLoggedIn() ? <Navigate to="/dashboard" /> : <Signup/>}
           />
           {/* Redirect to dashboard if user is logged in */}
           <Route
             path="/login"
-            element={isLoggedIn() ? <Dashboard/> : <Login />}
+            element={isLoggedIn() ? <Navigate to="/dashboard" /> : <Login/>}
           />
           {/* Only allow access to dashboard if user is logged in */}
           <Route
             path="/dashboard"
-            element={isLoggedIn() ? <Dashboard /> : <Login />}
+            element={isLoggedIn() ? <Dashboard/> : <Navigate to="/login" />}
           />
           {/* Only allow access to send page if user is logged in */}
           <Route
             path="/send"
-            element={isLoggedIn() ? <Send /> : <Login />}
+            element={isLoggedIn() ? <Send/> : <Navigate to="/login" />}
           />
         </Routes>
       </BrowserRouter>
