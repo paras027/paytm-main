@@ -6,6 +6,7 @@ function Send() {
     
 
     const [searchParams] = useSearchParams();
+    const mm = searchParams.get("val");
     const id = searchParams.get("id");
     const name = searchParams.get("name");
     const [amount, setAmount] = useState(0);
@@ -46,6 +47,7 @@ function Send() {
                     </div>
                     <button onClick={() => {
                         try{
+                            if(val>=amount){
                         axios.put("https://payingup.onrender.com/sendmoney", {
                             to: id,
                             money:parseInt(amount)
@@ -53,8 +55,9 @@ function Send() {
                     }})
                     alert(`${amount} Sent to : ${name}`);
                 }
+                }
                     catch(e) {
-                        console.log("cant send money");
+                        console.log("Cant Send Money/Not Enough Money");
                     }
                     }} class="justify-center rounded-md text-sm font-medium ring-offset-background transition-colors h-10 px-4 py-2 w-full bg-teal-200 text-white">
                         Initiate Transfer
