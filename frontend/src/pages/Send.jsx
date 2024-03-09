@@ -57,7 +57,7 @@ function Send() {
                 }
                 }
                     catch(e) {
-                        console.log("Cant Send Money/Not Enough Money");
+                        alert("Cant Send Money/Not Enough Money");
                     }
                     }} class="justify-center rounded-md text-sm font-medium ring-offset-background transition-colors h-10 px-4 py-2 w-full bg-teal-200 text-white">
                         Initiate Transfer
