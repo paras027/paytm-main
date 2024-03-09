@@ -29,7 +29,7 @@ return (<div>
   }}/>
 <br></br>
 <button className='bg-teal-200 rounded-lg text-2xl font-mono px-5 py-1' onClick={async function(){
-    const resp = await axios.post("http://payingup.vercel.app/signin",{fname,lname,password});
+    const resp = await axios.post("https://payingup.onrender.com/signin",{fname,lname,password});
     console.log(resp);
     localStorage.setItem("token", resp.data.token)
     navigate('/dashboard');

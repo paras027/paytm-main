@@ -14,7 +14,7 @@ function Dashboard() {
   const authToken = localStorage.getItem("token");
   useEffect(() => {
     async function getdaa(){
-    const res =  await axios.get("http://payingup.vercel.app/getbalance",{
+    const res =  await axios.get("https://payingup.onrender.com/getbalance",{
       headers: {
         "Content-Type": "application/json",
         'Authorization': authToken,
@@ -50,7 +50,7 @@ function Dashboard() {
 <input type="number" className='border-dotted border-black border-2 rounded-lg w-64 h-15' onChange={e => {
   setBoxv(e.target.value);}}/>
 <button className=' bg-teal-200 rounded-lg text-2xl font-mono px-7 py-1 ml-3' onClick={async function(){
-  const res = await axios.put('http://payingup.vercel.app/addmoney',{
+  const res = await axios.put('https://payingup.onrender.com/addmoney',{
     money: parseInt(boxv),
   },
   {headers: {'Content-Type': 'application/json','Authorization': authToken,
@@ -67,7 +67,7 @@ function Dashboard() {
       setFilter(e.target.value)
   }}/>
     <button className=' bg-teal-200 rounded-lg text-2xl font-mono px-7 py-1 ml-3' onClick={async function() {
-     const resp = await axios.get("http://payingup.vercel.app/getperson?filter=" + filter)
+     const resp = await axios.get("https://payingup.onrender.com/getperson?filter=" + filter)
               setUsers(resp.data.user)
         }} >Search</button>
         {console.log(users)}

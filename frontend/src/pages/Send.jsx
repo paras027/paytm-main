@@ -45,7 +45,7 @@ function Send() {
                     />
                     </div>
                     <button onClick={() => {
-                        axios.put("http://payingup.vercel.app/sendmoney", {
+                        axios.put("https://payingup.onrender.com/sendmoney", {
                             to: id,
                             money:parseInt(amount)
                         }, {headers: {'Content-Type': 'application/json','Authorization': authToken,

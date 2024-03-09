@@ -30,7 +30,7 @@ return (<div>
           }}/>
         <br></br>
         <button className='bg-teal-200 rounded-lg text-2xl font-mono px-5 py-1' onClick={async function(){
-            const resp = await axios.post("http://payingup.vercel.app/signup",{fname:fname,lname:lname,password:password});
+            const resp = await axios.post("https://payingup.onrender.com/signup",{fname:fname,lname:lname,password:password});
             localStorage.setItem("token", resp.data.token)
             navigate('/dashboard');
         }}>Signup </button>
