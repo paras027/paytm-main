@@ -244,7 +244,4 @@ app.put('/transaction',async (req, res) => {
     }
 });
 
-app.listen(5000, () => {
-    console.log(`Server is running on :${PORT}`);
-});
-
+app.listen(5000);
