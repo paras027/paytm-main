@@ -3,36 +3,56 @@ import {
   BrowserRouter,
   Route,
   Routes,
+  Navigate,
 } from "react-router-dom";
 import Signup from "./pages/Signup";
-import  Login  from "./pages/Login";
+import Login from "./pages/Login";
 import Dashboard from "./pages/Dashboard";
 import Home from "./pages/Home";
 import Send from "./pages/Send";
 
-function App() {
+// Function to check if the user is logged in
+function isLoggedIn() {
+  // You can implement your logic here to check if the user is logged in
+  // For example, you can check if the user has a valid token in local storage
   const token = localStorage.getItem('token');
-  return (
-    <div>
-    
-       <BrowserRouter>
-       {token?<Routes>
-        <Route path="/" element={<Dashboard />} />
-      <Route path="/signup" element={<Dashboard />} />
-      <Route path="/login" element={<Dashboard />} />
-        <Route path="/dashboard" element={<Dashboard />} />
-        <Route path="/send" element={<Send />} />
-      </Routes>:<Routes>
-      <Route path="/" element={<Home />} />
-      <Route path="/signup" element={<Signup />} />
-      <Route path="/login" element={<Login />} />
-      <Route path="/dashboard" element={<Home />} />
-        <Route path="/send" element={<Home />} />
-    </Routes>}
-        
-      </BrowserRouter>
-    </div>
-  )
+  return !!token; // Return true if token exists, false otherwise
 }
 
-export default App
+function App() {
+  return (
+    <div>
+      <BrowserRouter>
+        <Routes>
+          {/* Redirect to dashboard if user is logged in */}
+          <Route
+            path="/"
+            element={isLoggedIn() ? <Navigate to="/dashboard" /> : <Home />}
+          />
+          {/* Redirect to dashboard if user is logged in */}
+          <Route
+            path="/signup"
+            element={isLoggedIn() ? <Navigate to="/dashboard" /> : <Signup />}
+          />
+          {/* Redirect to dashboard if user is logged in */}
+          <Route
+            path="/login"
+            element={isLoggedIn() ? <Navigate to="/dashboard" /> : <Login />}
+          />
+          {/* Only allow access to dashboard if user is logged in */}
+          <Route
+            path="/dashboard"
+            element={isLoggedIn() ? <Dashboard /> : <Navigate to="/login" />}
+          />
+          {/* Only allow access to send page if user is logged in */}
+          <Route
+            path="/send"
+            element={isLoggedIn() ? <Send /> : <Navigate to="/login" />}
+          />
+        </Routes>
+      </BrowserRouter>
+    </div>
+  );
+}
+
+export default App;
