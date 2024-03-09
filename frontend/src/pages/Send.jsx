@@ -45,11 +45,17 @@ function Send() {
                     />
                     </div>
                     <button onClick={() => {
+                        try{
                         axios.put("https://payingup.onrender.com/sendmoney", {
                             to: id,
                             money:parseInt(amount)
                         }, {headers: {'Content-Type': 'application/json','Authorization': authToken,
                     }})
+                    alert(`${amount} Sent to : ${name}`);
+                }
+                    catch(e) {
+                        console.log("cant send money");
+                    }
                     }} class="justify-center rounded-md text-sm font-medium ring-offset-background transition-colors h-10 px-4 py-2 w-full bg-teal-200 text-white">
                         Initiate Transfer
                     </button>
