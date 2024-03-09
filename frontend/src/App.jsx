@@ -3,6 +3,7 @@ import {
   BrowserRouter,
   Route,
   Routes,
+  useNavigate,
   Navigate,
 } from "react-router-dom";
 import Signup from "./pages/Signup";
@@ -16,10 +17,12 @@ function isLoggedIn() {
   // You can implement your logic here to check if the user is logged in
   // For example, you can check if the user has a valid token in local storage
   const token = localStorage.getItem('token');
+  console.log(token?true:false);
   return token?true:false; // Return true if token exists, false otherwise
 }
 
 function App() {
+  const navigate = useNavigate();
   return (
     <div>
       <BrowserRouter>
