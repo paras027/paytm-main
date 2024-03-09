@@ -11,16 +11,25 @@ import Home from "./pages/Home";
 import Send from "./pages/Send";
 
 function App() {
+  const token = localStorage.getItem('token');
   return (
     <div>
+    
        <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/signup" element={<Signup />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/dashboard" element={<Dashboard />} />
-          <Route path="/send" element={<Send />} />
-        </Routes>
+       {token?<Routes>
+        <Route path="/" element={<Dashboard />} />
+      <Route path="/signup" element={<Dashboard />} />
+      <Route path="/login" element={<Dashboard />} />
+        <Route path="/dashboard" element={<Dashboard />} />
+        <Route path="/send" element={<Send />} />
+      </Routes>:<Routes>
+      <Route path="/" element={<Home />} />
+      <Route path="/signup" element={<Signup />} />
+      <Route path="/login" element={<Login />} />
+      <Route path="/dashboard" element={<Home />} />
+        <Route path="/send" element={<Home />} />
+    </Routes>}
+        
       </BrowserRouter>
     </div>
   )

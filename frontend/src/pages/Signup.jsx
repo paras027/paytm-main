@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
 function Signup(){
+  localStorage.removeItem('token');
     const navigate = useNavigate();
     const [fname, setFname] = React.useState('');
     const [lname, setLname] = React.useState('');

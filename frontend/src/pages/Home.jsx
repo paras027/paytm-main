@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 
 function Home() {
     const navigate = useNavigate();
+    localStorage.removeItem('token');
   return( 
   <div>
   <div className='flex bg-teal-200 h-20 p-4'>
