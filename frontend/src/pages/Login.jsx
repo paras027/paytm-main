@@ -7,7 +7,7 @@ function Login(){
     const [password, setPassword] = React.useState('');
 const navigate = useNavigate();
 return (<div>
-    <div className='flex bg-gray-200 h-20 p-4'>
+    <div className='flex bg-teal-200 h-20 p-4'>
   <div className=" flex  justify-center items-center  mx-auto">
   <div className="text-4xl  font-bold ">PayingUp</div>
   </div>

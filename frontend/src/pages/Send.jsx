@@ -11,7 +11,7 @@ function Send() {
     const [amount, setAmount] = useState(0);
     const authToken = localStorage.getItem("token");
 
-    return <div class="flex justify-center h-screen bg-gray-100">
+    return <div class="flex justify-center h-screen bg-teal-200">
         <div className="h-full flex flex-col justify-center">
             <div
                 class="border h-min text-card-foreground max-w-md p-4 space-y-8 w-96 bg-white shadow-lg rounded-lg"
@@ -21,7 +21,7 @@ function Send() {
                 </div>
                 <div class="p-6">
                 <div class="flex items-center space-x-4">
-                    <div class="w-12 h-12 rounded-full bg-green-500 flex items-center justify-center">
+                    <div class="w-12 h-12 rounded-full bg-teal-200 flex items-center justify-center">
                     <span class="text-2xl text-white">{name[0].toUpperCase()}</span>
                     </div>
                     <h3 class="text-2xl font-semibold">{name}</h3>
