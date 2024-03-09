@@ -3,6 +3,7 @@ import {
   BrowserRouter,
   Route,
   Routes,
+  useNavigate,
   Navigate,
 } from "react-router-dom";
 import Signup from "./pages/Signup";
@@ -20,6 +21,7 @@ function isLoggedIn() {
 }
 
 function App() {
+  const navigate = useNavigate();
   return (
     <div>
       <BrowserRouter>
@@ -27,27 +29,27 @@ function App() {
           {/* Redirect to dashboard if user is logged in */}
           <Route
             path="/"
-            element={isLoggedIn() ? <Navigate to="/dashboard" /> : <Home />}
+            element={isLoggedIn() ? navigate('/dashboard') : <Home />}
           />
           {/* Redirect to dashboard if user is logged in */}
           <Route
             path="/signup"
-            element={isLoggedIn() ? <Navigate to="/dashboard" /> : <Signup />}
+            element={isLoggedIn() ? navigate('/dashboard') : <Signup />}
           />
           {/* Redirect to dashboard if user is logged in */}
           <Route
             path="/login"
-            element={isLoggedIn() ? <Navigate to="/dashboard" /> : <Login />}
+            element={isLoggedIn() ? navigate('/dashboard') : <Login />}
           />
           {/* Only allow access to dashboard if user is logged in */}
           <Route
             path="/dashboard"
-            element={isLoggedIn() ? <Dashboard /> : <Navigate to="/login" />}
+            element={isLoggedIn() ? <Dashboard /> : navigate('/login')}
           />
           {/* Only allow access to send page if user is logged in */}
           <Route
             path="/send"
-            element={isLoggedIn() ? <Send /> : <Navigate to="/login" />}
+            element={isLoggedIn() ? <Send /> : navigate('/login')}
           />
         </Routes>
       </BrowserRouter>
