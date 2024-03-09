@@ -31,8 +31,7 @@ return (<div>
 <button className='bg-teal-200 rounded-lg text-2xl font-mono px-5 py-1' onClick={async function(){
     const resp = await axios.post("https://payingup.onrender.com/signin",{fname,lname,password});
     console.log(resp);
-    const mm = localStorage.setItem("token", resp.data.token)
-    handleLogin(mm);
+    handleLogin(resp.data.token);
     navigate('/dashboard');
     console.log("logged in");
 }}>Login</button>
