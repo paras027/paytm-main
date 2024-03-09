@@ -1,54 +1,54 @@
-import React from 'react';
-import {
-  BrowserRouter,
-  Route,
-  Routes,
-  Navigate,
-} from "react-router-dom";
-import Signup from "./pages/Signup";
-import Login from "./pages/Login";
-import Dashboard from "./pages/Dashboard";
-import Home from "./pages/Home";
-import Send from "./pages/Send";
-
-// Function to check if the user is logged in
-function isLoggedIn() {
-  // You can implement your logic here to check if the user is logged in
-  // For example, you can check if the user has a valid token in local storage
-  const token = localStorage.getItem('token');
-  return !!token; // Return true if token exists, false otherwise
-}
+import React, { useState, useEffect } from 'react';
+import { BrowserRouter, Route, Routes, Navigate } from 'react-router-dom';
+import Signup from './pages/Signup';
+import Login from './pages/Login';
+import Dashboard from './pages/Dashboard';
+import Home from './pages/Home';
+import Send from './pages/Send';
 
 function App() {
+  const [token, setToken] = useState(null);
+
+  // Check if the user is already authenticated when the component mounts
+  useEffect(() => {
+    const storedToken = localStorage.getItem('token');
+    if (storedToken) {
+      setToken(storedToken);
+    }
+  }, []);
+
+  // Function to handle user login
+  const handleLogin = (token) => {
+    localStorage.setItem('token', token);
+    setToken(token);
+  };
+
+  // Function to handle user logout
+  const handleLogout = () => {
+    localStorage.removeItem('token');
+    setToken(null);
+  };
+
   return (
     <div>
       <BrowserRouter>
         <Routes>
-          {/* Redirect to dashboard if user is logged in */}
-          <Route
-            path="/"
-            element={isLoggedIn() ? <Navigate to="/dashboard" /> : <Home />}
-          />
-          {/* Redirect to dashboard if user is logged in */}
-          <Route
-            path="/signup"
-            element={isLoggedIn() ? <Navigate to="/dashboard" /> : <Signup />}
-          />
-          {/* Redirect to dashboard if user is logged in */}
-          <Route
-            path="/login"
-            element={isLoggedIn() ? <Navigate to="/dashboard" /> : <Login />}
-          />
-          {/* Only allow access to dashboard if user is logged in */}
-          <Route
-            path="/dashboard"
-            element={isLoggedIn() ? <Dashboard /> : <Navigate to="/login" />}
-          />
-          {/* Only allow access to send page if user is logged in */}
-          <Route
-            path="/send"
-            element={isLoggedIn() ? <Send /> : <Navigate to="/login" />}
-          />
+          {/* Public routes */}
+          <Route path="/" element={<Home />} />
+          <Route path="/login" element={<Login handleLogin={handleLogin} />} />
+          <Route path="/signup" element={<Signup handleLogin={handleLogin} />} />
+
+          {/* Protected routes */}
+          {token ? (
+            <div>
+              <Route path="/dashboard" element={<Dashboard handleLogout={handleLogout} />} />
+              <Route path="/send" element={<Send />} />
+              <Route path="*" element={<Navigate to="/dashboard" />} />
+            </div>
+          ) : (
+            // Redirect to login page if user is not authenticated
+            <Route path="*" element={<Navigate to="/login" />} />
+          )}
         </Routes>
       </BrowserRouter>
     </div>

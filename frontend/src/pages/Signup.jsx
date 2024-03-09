@@ -2,8 +2,8 @@ import React from 'react'
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
-function Signup(){
-  localStorage.removeItem('token');
+function Signup({handleLogin}){
+  l
     const navigate = useNavigate();
     const [fname, setFname] = React.useState('');
     const [lname, setLname] = React.useState('');
@@ -32,7 +32,8 @@ return (<div>
         <br></br>
         <button className='bg-teal-200 rounded-lg text-2xl font-mono px-5 py-1' onClick={async function(){
             const resp = await axios.post("https://payingup.onrender.com/signup",{fname:fname,lname:lname,password:password});
-            localStorage.setItem("token", resp.data.token)
+            const mm = localStorage.setItem("token", resp.data.token)
+            handleLogin(mm);
             navigate('/dashboard');
         }}>Signup </button>
         <br></br>
