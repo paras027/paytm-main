@@ -91,7 +91,7 @@ function Dashboard() {
 
         <div className="flex flex-col justify-center h-ful bg-teal-200 rounded-lg text-xl font-mono px-2 py-1 ml-3 ">
             <button onClick={function(){
-              navigate("/send?id=" + user._id + "&name=" + user.firstName)
+              navigate("/send?id=" + user._id + "&name=" + user.fname)
               console.log("chla");
             }} >Send Money</button>
         </div>
