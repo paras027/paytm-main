@@ -11,7 +11,7 @@ function Send() {
     const [amount, setAmount] = useState(0);
     const authToken = localStorage.getItem("token");
 
-    return <div class="flex justify-center h-screen bg-teal-200">
+    return <div class="flex justify-center h-screen bg-gray-100">
         <div className="h-full flex flex-col justify-center">
             <div
                 class="border h-min text-card-foreground max-w-md p-4 space-y-8 w-96 bg-white shadow-lg rounded-lg"
@@ -50,7 +50,7 @@ function Send() {
                             money:parseInt(amount)
                         }, {headers: {'Content-Type': 'application/json','Authorization': authToken,
                     }})
-                    }} class="justify-center rounded-md text-sm font-medium ring-offset-background transition-colors h-10 px-4 py-2 w-full bg-green-500 text-white">
+                    }} class="justify-center rounded-md text-sm font-medium ring-offset-background transition-colors h-10 px-4 py-2 w-full bg-teal-200 text-white">
                         Initiate Transfer
                     </button>
                 </div>
