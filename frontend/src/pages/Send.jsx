@@ -45,7 +45,7 @@ function Send() {
                     </div>
                     <button onClick={() => {
                         try{
-                            if(val>=amount){
+                            if(mm>=amount){
                         axios.put("https://payingup.onrender.com/sendmoney", {
                             to: id,
                             money:parseInt(amount)
