@@ -9,7 +9,6 @@ import Send from './pages/Send';
 function App() {
   const [token, setToken] = useState(null);
 
-  // Check if the user is already authenticated when the component mounts
   useEffect(() => {
     const storedToken = localStorage.getItem('token');
     if (storedToken) {
@@ -17,38 +16,30 @@ function App() {
     }
   }, []);
 
-  // Function to handle user login
-  const handleLogin = (token) => {
-    localStorage.setItem('token', token);
-    setToken(token);
-  };
-
-  // Function to handle user logout
-  const handleLogout = () => {
-    localStorage.removeItem('token');
-    setToken(null);
-  };
-
   return (
     <div>
       <BrowserRouter>
         <Routes>
-          {/* Public routes */}
-          <Route path="/" element={<Home />} />
-          <Route path="/login" element={<Login handleLogin={handleLogin} />} />
-          <Route path="/signup" element={<Signup handleLogin={handleLogin} />} />
-
-          {/* Protected routes */}
-          {token ? (
-            <div>
-              <Route path="/dashboard" element={<Dashboard handleLogout={handleLogout} />} />
-              <Route path="/send" element={<Send />} />
-              <Route path="*" element={<Navigate to="/dashboard" />} />
-            </div>
-          ) : (
-            // Redirect to login page if user is not authenticated
-            <Route path="*" element={<Navigate to="/login" />} />
-          )}
+          <Route
+            path="/login"
+            element={token ? <Navigate to="/dashboard" /> : <Login setToken={setToken} />}
+          />
+          <Route
+            path="/signup"
+            element={token ? <Navigate to="/dashboard" /> : <Signup setToken={setToken} />}
+          />
+          <Route
+            path="/"
+            element={token ? <Navigate to="/dashboard" /> : <Home />}
+          />
+          <Route
+            path="/dashboard"
+            element={token ? <Dashboard /> : <Navigate to="/login" />}
+          />
+          <Route
+            path="/send"
+            element={token ? <Send /> : <Navigate to="/login" />}
+          />
         </Routes>
       </BrowserRouter>
     </div>

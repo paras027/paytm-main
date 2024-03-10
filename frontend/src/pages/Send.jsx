@@ -3,8 +3,6 @@ import axios from "axios";
 import { useState } from 'react';
 
 function Send() {
-    
-
     const [searchParams] = useSearchParams();
     const mm = searchParams.get("val");
     const id = searchParams.get("id");

@@ -6,7 +6,7 @@ import { faWallet,faRightFromBracket } from '@fortawesome/free-solid-svg-icons';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 
-function Dashboard({handleLogout}) {
+function Dashboard() {
   const navigate = useNavigate();
   const [wallmoney,setWallmoney] = useState(0);
   const [value,setValue] = useState(0);
@@ -41,7 +41,7 @@ function Dashboard({handleLogout}) {
   <div className='text-3xl font-serif pt-1'>{wallmoney}</div>
   <div className="text-4xl justify-self-end font-bold "><FontAwesomeIcon icon={faWallet} /></div>
   <button className="text-4xl justify-self-end font-bold " onClick={()=>{
-    lhandleLogout();
+    localStorage.removeItem('token');
      navigate("/login" )}}><FontAwesomeIcon icon={faRightFromBracket}/></button>
   </div>
 </div>
