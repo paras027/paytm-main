@@ -32,25 +32,25 @@ function Dashboard({setToken}) {
 
   return( 
   <div>
-  <div className='flex bg-teal-200 h-20 p-4'>
+  <div className='flex bg-teal-200 h-20 p-2 w-full' >
   <div className=" flex justify-center items-center  mx-auto">
-  <div className="text-4xl  font-bold ">PayingUp</div>
+  <div className="text-3xl sm:text-4xl lg:text-5xl font-bold ">PayingUp</div>
   </div>
-  <div className='flex justify-end space-x-4'>
-  <div className='text-3xl font-serif pt-2'>Rs</div>
-  <div className='text-3xl font-serif pt-1'>{wallmoney}</div>
-  <div className="text-4xl justify-self-end font-bold "><FontAwesomeIcon icon={faWallet} /></div>
-  <button className="text-4xl justify-self-end font-bold " onClick={()=>{
+  <div className='flex justify-end space-x-2 md:space-x-4 '>
+  
+  <div className='text-2xl md:pt-2 md:text-4xl font-serif pt-4'>Rs {wallmoney}</div>
+  <div className=" text-2xl md:pt-2 md:text-4xl justify-self-end font-bold pt-4 "><FontAwesomeIcon icon={faWallet} /></div>
+  <button className="text-2xl md:text-4xl justify-self-end font-bold " onClick={()=>{
     localStorage.removeItem('token');
     setToken(null);
      navigate("/login" )}}><FontAwesomeIcon icon={faRightFromBracket}/></button>
   </div>
 </div>
 <br/>
-<div className='flex px-5'>
-<input type="number" className='border-dotted border-black border-2 rounded-lg w-64 h-15' onChange={e => {
+<div className='flex px-5 md:m-7'>
+<input type="number" className='border-dotted border-black border-2 rounded-lg w-3/4 md:w-1/3 h-15' onChange={e => {
   setBoxv(e.target.value);}}/>
-<button className=' bg-teal-200 rounded-lg text-2xl font-mono px-7 py-1 ml-3' onClick={async function(){
+<button className=' bg-teal-200 rounded-lg text-2xl lg:text-3xl font-mono px-7 py-1 ml-3' onClick={async function(){
   const res = await axios.put('https://payingup.onrender.com/addmoney',{
     money: parseInt(boxv),
   },
@@ -61,13 +61,13 @@ function Dashboard({setToken}) {
 }}>Add Money</button>
 </div>
 <br></br>
-<div className='ml-5 '>
-    <div>Send Money to Users</div>
-    <div className='flex'>
-    <input type='text' className='border-dotted border-black border-2 rounded-lg w-1/4 h-15 p-2' onChange={(e) => {
+
+    <div className='px-5 md:ml-7 md:text-2xl'>Send Money to Users</div>
+    <div className='flex px-5  md:m-7'>
+    <input type='text' className='border-dotted border-black border-2 lg:text-4xl rounded-lg w-3/4 md:w-1/3 h-15' onChange={(e) => {
       setFilter(e.target.value)
   }}/>
-    <button className=' bg-teal-200 rounded-lg text-2xl font-mono px-7 py-1 ml-3' onClick={async function() {
+    <button className=' bg-teal-200 rounded-lg text-2xl lg:text-3xl font-mono px-7 py-1 ml-3' onClick={async function() {
      const resp = await axios.get("https://payingup.onrender.com/getperson?filter=" + filter)
               setUsers(resp.data.user)
         }} >Search</button>
@@ -99,7 +99,7 @@ function Dashboard({setToken}) {
     </div>
       )
     })}
-    </div>
+    
 
 
 

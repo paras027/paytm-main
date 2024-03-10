@@ -9,12 +9,12 @@ function Signup({setToken}){
     const [lname, setLname] = React.useState('');
     const [password, setPassword] = React.useState('');
 return (<div>
-    <div className='flex bg-teal-200 h-20 p-4'>
+    <div className='flex bg-teal-200 h-20 w-full min-w-full'>
   <div className=" flex  justify-center items-center  mx-auto">
-  <div className="text-4xl  font-bold ">PayingUp</div>
+  <div className="text-4xl sm:text-5xl font-bold ">PayingUp</div>
   </div>
   </div>
-  <div className='flex flex-col  items-center p-10'>
+  <div className='flex flex-col md:text-3xl items-center p-10'>
   <div className='text-4xl font-semibold'>Sign Up</div>
   <div className='text-gray-500 text-md pt-2'>Make a new Account</div>
   <br></br>
