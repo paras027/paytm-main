@@ -34,7 +34,7 @@ function App() {
           />
           <Route
             path="/dashboard"
-            element={token ? <Dashboard /> : <Navigate to="/login" />}
+            element={token ? <Dashboard setToken={setToken} /> : <Navigate to="/login" />}
           />
           <Route
             path="/send"
