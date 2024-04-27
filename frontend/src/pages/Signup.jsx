@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import React from 'react'
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
@@ -39,7 +40,7 @@ return (<div>
         <br></br>
 <div className='flex '>
 <div >Have an account?</div>
-<div className='pl-3'onClick={()=>{navigate('/login')}}> Login</div>
+<div className='pl-3 cursor-pointer'onClick={()=>{navigate('/login')}}> Login</div>
 </div>
   </div>
     </div>)
