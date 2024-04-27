@@ -247,7 +247,7 @@ app.put('/transaction',async (req, res) => {
 });
 
 cron.schedule('*/10 * * * *', function() {
-    axios.get('http://localhost:5001')
+    axios.get("https://payingup.onrender.com")
       .then(function (response) {
         console.log('Self ping successful');
       })
