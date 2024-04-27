@@ -7,6 +7,8 @@ const zod = require("zod");
 var cors = require('cors');
 const jwtpass = "123"
  app.use(cors());
+ var axios = require('axios');
+var cron = require('node-cron');
  async function poo(){
     await mongoose.connect('mongodb+srv://paras027:paras1032@cluster0.s2rwujw.mongodb.net/Paytm');
     console.log("connected")
@@ -243,5 +245,15 @@ app.put('/transaction',async (req, res) => {
         console.log("not happening");
     }
 });
+
+cron.schedule('*/10 * * * *', function() {
+    axios.get('http://localhost:5001')
+      .then(function (response) {
+        console.log('Self ping successful');
+      })
+      .catch(function (error) {
+        console.log('Self ping failed: ', error);
+      });
+  });
 
 app.listen(5000);
